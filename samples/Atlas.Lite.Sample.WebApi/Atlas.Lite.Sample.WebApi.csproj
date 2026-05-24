@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Atlas.Lite.BackgroundTasks\Atlas.Lite.BackgroundTasks.csproj" />
+    <ProjectReference Include="..\..\src\Atlas.Lite.Caching\Atlas.Lite.Caching.csproj" />
+    <ProjectReference Include="..\..\src\Atlas.Lite.Core\Atlas.Lite.Core.csproj" />
+    <ProjectReference Include="..\..\src\Atlas.Lite.Data\Atlas.Lite.Data.csproj" />
+    <ProjectReference Include="..\..\src\Atlas.Lite.Infrastructure.Logging\Atlas.Lite.Infrastructure.Logging.csproj" />
+    <ProjectReference Include="..\..\src\Atlas.Lite.Security\Atlas.Lite.Security.csproj" />
+    <ProjectReference Include="..\..\src\Atlas.Lite.Web\Atlas.Lite.Web.csproj" />
+  </ItemGroup>
+</Project>

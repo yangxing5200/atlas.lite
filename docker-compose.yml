@@ -1,0 +1,40 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: samples/Atlas.Lite.Sample.WebApi/Dockerfile
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ASPNETCORE_ENVIRONMENT: Development
+      AtlasLite__Database__Provider: SqlServer
+      AtlasLite__Database__ConnectionString: Server=db,1433;Database=AtlasLiteSample;User Id=sa;Password=AtlasLite!Passw0rd;TrustServerCertificate=True;Encrypt=False
+      AtlasLite__Cache__Provider: Redis
+      AtlasLite__Cache__Redis__ConnectionString: redis:6379
+      AtlasLite__Logging__Seq__Enabled: "true"
+      AtlasLite__Logging__Seq__ServerUrl: http://seq:5341
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - redis
+      - seq
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: AtlasLite!Passw0rd
+    ports:
+      - "14333:1433"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  seq:
+    image: datalust/seq:2024.3
+    environment:
+      ACCEPT_EULA: "Y"
+    ports:
+      - "5341:80"

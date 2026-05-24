@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Atlas.Lite",
+  "classifications": [
+    "Web",
+    "WebAPI",
+    "Atlas.Lite"
+  ],
+  "identity": "Atlas.Lite.Template.WebApi",
+  "name": "Atlas.Lite Web API",
+  "shortName": "atlas-lite-webapi",
+  "sourceName": "AtlasLiteTemplate",
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "source": "./content/",
+      "target": "./"
+    }
+  ],
+  "symbols": {
+    "namespaceName": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "AtlasLiteTemplateNamespace",
+      "replaces": "AtlasLiteTemplateNamespace",
+      "description": "Default namespace for generated source files."
+    },
+    "databaseProvider": {
+      "type": "parameter",
+      "datatype": "choice",
+      "defaultValue": "Sqlite",
+      "replaces": "Sqlite",
+      "description": "Database provider written to appsettings.json.",
+      "choices": [
+        {
+          "choice": "Sqlite",
+          "description": "SQLite connection string."
+        },
+        {
+          "choice": "SqlServer",
+          "description": "SQL Server connection string."
+        },
+        {
+          "choice": "InMemory",
+          "description": "In-memory database for local tests."
+        }
+      ]
+    }
+  }
+}

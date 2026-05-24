@@ -1,0 +1,42 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Check line endings
+        shell: pwsh
+        run: ./tools/check-line-endings.ps1
+
+      - name: Check central package versions
+        shell: pwsh
+        run: ./tools/check-package-versions.ps1
+
+      - name: Restore
+        run: dotnet restore Atlas.Lite.sln
+
+      - name: Build
+        run: dotnet build Atlas.Lite.sln --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test Atlas.Lite.sln --no-build --configuration Release --logger trx --results-directory TestResults
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: TestResults

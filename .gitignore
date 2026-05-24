@@ -67,3 +67,18 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# .NET
+bin/
+obj/
+TestResults/
+artifacts/
+*.user
+*.suo
+.vs/
+
+# local sample runtime files
+*.db
+*.db-shm
+*.db-wal
+logs/
